@@ -1,0 +1,10 @@
+{
+  "GR_BA2.GR_BA2_DB::CDA_CV_GL_COPA": {
+    "target": {
+      "remote": "CDA_BA1_GR",
+      "database": "BA1",
+      "schema": "CDA_TRN_BA1_SCHEMA_1",
+      "object": "CDA_TRN_BA1.CDA_TRN_BA1_DB::CV_GL_COPA"
+    }
+  }
+}

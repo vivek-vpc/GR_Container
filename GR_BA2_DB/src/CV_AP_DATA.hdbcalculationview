@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="GR_BA2.GR_BA2_DB::CV_AP_DATA" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_AP_DATA"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="GR_BA2.GR_BA2_DB::CDA_CV_GL_COPA">
+    <resourceUri>GR_BA2.GR_BA2_DB::CDA_CV_GL_COPA</resourceUri>
+  </DataSource>
+  <DataSource id="GR_BA2.GR_BA2_DB::FI_Tables.AP">
+    <resourceUri>GR_BA2.GR_BA2_DB::FI_Tables.AP</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="Doc_No">
+        <descriptions defaultDescription="Doc_No"/>
+      </viewAttribute>
+      <viewAttribute id="GL_No">
+        <descriptions defaultDescription="GL_No"/>
+      </viewAttribute>
+      <viewAttribute id="Country">
+        <descriptions defaultDescription="Country"/>
+      </viewAttribute>
+      <viewAttribute id="Comp_Code">
+        <descriptions defaultDescription="Comp_Code"/>
+      </viewAttribute>
+      <viewAttribute id="Material">
+        <descriptions defaultDescription="Material"/>
+      </viewAttribute>
+      <viewAttribute id="Amount">
+        <descriptions defaultDescription="Amount"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="GR_BA2.GR_BA2_DB::CDA_CV_GL_COPA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Doc_No" source="Doc_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_No" source="GL_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Comp_Code" source="Comp_Code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amount" source="Amount"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="Acc_Doc">
+        <descriptions defaultDescription="Acc_Doc"/>
+      </viewAttribute>
+      <viewAttribute id="GL_No">
+        <descriptions defaultDescription="GL_No"/>
+      </viewAttribute>
+      <viewAttribute id="Comp_Code">
+        <descriptions defaultDescription="Comp_Code"/>
+      </viewAttribute>
+      <viewAttribute id="Country">
+        <descriptions defaultDescription="Country"/>
+      </viewAttribute>
+      <viewAttribute id="Credit">
+        <descriptions defaultDescription="Credit"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="GR_BA2.GR_BA2_DB::FI_Tables.AP">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Acc_Doc" source="Acc_Doc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_No" source="GL_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Comp_Code" source="Comp_Code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Credit" source="Credit"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="Acc_Doc">
+        <descriptions defaultDescription="Acc_Doc"/>
+      </viewAttribute>
+      <viewAttribute id="GL_No">
+        <descriptions defaultDescription="GL_No"/>
+      </viewAttribute>
+      <viewAttribute id="Comp_Code">
+        <descriptions defaultDescription="Comp_Code"/>
+      </viewAttribute>
+      <viewAttribute id="Country">
+        <descriptions defaultDescription="Country"/>
+      </viewAttribute>
+      <viewAttribute id="Credit" aggregationType="sum">
+        <descriptions defaultDescription="Credit"/>
+      </viewAttribute>
+      <viewAttribute id="Amount" aggregationType="sum">
+        <descriptions defaultDescription="Amount"/>
+      </viewAttribute>
+      <viewAttribute id="Doc_No">
+        <descriptions defaultDescription="Doc_No"/>
+      </viewAttribute>
+      <viewAttribute id="Material">
+        <descriptions defaultDescription="Material"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$GL_No$GL_No"/>
+      <viewAttribute hidden="true" id="JOIN$Comp_Code$Comp_Code"/>
+      <viewAttribute hidden="true" id="JOIN$Country$Country"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amount" source="Amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Doc_No" source="Doc_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GL_No$GL_No" source="GL_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$Comp_Code$Comp_Code" source="Comp_Code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$Country$Country" source="Country"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Acc_Doc" source="Acc_Doc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_No" source="GL_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Comp_Code" source="Comp_Code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Credit" source="Credit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GL_No$GL_No" source="GL_No"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$Comp_Code$Comp_Code" source="Comp_Code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$Country$Country" source="Country"/>
+    </input>
+    <joinAttribute name="JOIN$GL_No$GL_No"/>
+    <joinAttribute name="JOIN$Comp_Code$Comp_Code"/>
+    <joinAttribute name="JOIN$Country$Country"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="Acc_Doc" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Acc_Doc"/>
+      <keyMapping columnObjectName="Join_1" columnName="Acc_Doc"/>
+    </attribute>
+    <attribute id="GL_No" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GL_No"/>
+      <keyMapping columnObjectName="Join_1" columnName="GL_No"/>
+    </attribute>
+    <attribute id="Comp_Code" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Comp_Code"/>
+      <keyMapping columnObjectName="Join_1" columnName="Comp_Code"/>
+    </attribute>
+    <attribute id="Country" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country"/>
+      <keyMapping columnObjectName="Join_1" columnName="Country"/>
+    </attribute>
+    <attribute id="Doc_No" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Doc_No"/>
+      <keyMapping columnObjectName="Join_1" columnName="Doc_No"/>
+    </attribute>
+    <attribute id="Material" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material"/>
+      <keyMapping columnObjectName="Join_1" columnName="Material"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Credit" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Credit"/>
+      <measureMapping columnObjectName="Join_1" columnName="Credit"/>
+    </measure>
+    <measure id="Amount" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="Amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

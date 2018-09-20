@@ -1,0 +1,11 @@
+namespace GR_BA2.GR_BA2_DB;
+
+context FI_Tables {
+entity AP{
+		Key Acc_Doc     : String(10) not null;
+		    GL_No		: String(10);
+		    Comp_Code	: String(10);
+		    Country		: String(20);
+		    Credit		: Double;
+};
+};

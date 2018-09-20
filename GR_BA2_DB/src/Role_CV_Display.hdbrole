@@ -1,0 +1,12 @@
+{
+	"role":{
+	  "name": "GR_BA2.GR_BA2_DB::Role_CV_Display",
+	  "object_privileges":[
+			{
+			"name": "GR_BA2.GR_BA2_DB::CV_AP_DATA",
+			"type": "VIEW",
+			"privileges": [ "SELECT" ]
+			}
+		]
+	}
+}

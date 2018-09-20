@@ -1,0 +1,17 @@
+{
+  "role": {
+    "name": "GR_BA2.GR_BA2_DB::Role_AP_CV_AP_DATA_COMP4",
+     "schema_analytic_privileges": [
+            {
+               "privileges":[ "GR_BA2.GR_BA2_DB::AP_CV_AP_DATA_COMP4" ]
+            }
+        ],
+     "object_privileges":[
+			{
+			"name": "GR_BA2.GR_BA2_DB::CV_AP_DATA",
+			"type": "VIEW",
+			"privileges": [ "SELECT" ]
+			}
+		]
+	}
+}        
